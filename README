@@ -1,0 +1,7 @@
+Serve serves a directory over HTTP.
+
+Example
+	$ serve -port 9000 directory
+
+Install
+	$ go install github.com/bbriano/serve@latest
