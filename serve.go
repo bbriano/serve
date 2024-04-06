@@ -7,9 +7,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
-var port = flag.String("port", "9000", "port to listen on")
+var port = flag.Int("port", 9000, "port to listen on")
 
 func main() {
 	flag.Parse()
@@ -27,7 +28,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error: %s is not a directory\n", dir)
 		os.Exit(1)
 	}
-	addr := "0.0.0.0:" + *port
+	addr := "0.0.0.0:" + strconv.Itoa(*port)
 	handler := http.FileServer(http.Dir(dir))
 	fmt.Println("Serving on http://" + addr)
 	log.Fatal(http.ListenAndServe(addr, handler))
