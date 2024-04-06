@@ -13,9 +13,13 @@ import (
 var port = flag.Int("port", 9000, "port to listen on")
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintln(os.Stderr, "Usage: serve [options] directory")
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 	if len(os.Args) != 2 {
-		fmt.Fprintln(os.Stderr, "Usage: serve [options] directory")
+		flag.Usage()
 		os.Exit(1)
 	}
 	dir := os.Args[1]
