@@ -18,11 +18,11 @@ func main() {
 		flag.PrintDefaults()
 	}
 	flag.Parse()
-	if len(os.Args) != 2 {
+	if len(flag.Args()) != 1 {
 		flag.Usage()
 		os.Exit(1)
 	}
-	dir := os.Args[1]
+	dir := flag.Args()[0]
 	stat, err := os.Stat(dir)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error:", err)
